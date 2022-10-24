@@ -12,6 +12,9 @@ open class ChapiiMaterialTextField: UITextField {
     
     //  MARK: - Open variables -
     
+    open var updateBackGroundColorOnFocus = true
+    
+    open var updateBorderColorOnFocus = true
     /**
      * Sets hint color for not focused state
      */
@@ -147,6 +150,11 @@ open class ChapiiMaterialTextField: UITextField {
     }
     
     private func activateTextField() {
+        
+        guard updateBackGroundColorOnFocus && updateBorderColorOnFocus else {
+            return
+        }
+        
         if isHintVisible { return }
         isHintVisible.toggle()
         
@@ -159,6 +167,11 @@ open class ChapiiMaterialTextField: UITextField {
     }
     
     private func deactivateTextField() {
+        
+        guard updateBackGroundColorOnFocus && updateBorderColorOnFocus else {
+            return
+        }
+        
         if !isHintVisible { return }
         isHintVisible.toggle()
         
