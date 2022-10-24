@@ -150,34 +150,35 @@ open class ChapiiMaterialTextField: UITextField {
     }
     
     private func activateTextField() {
-        
-        guard updateBackGroundColorOnFocus && updateBorderColorOnFocus else {
-            return
-        }
-        
         if isHintVisible { return }
         isHintVisible.toggle()
         
         UIView.animate(withDuration: 0.2) {
             self.updateHint()
             self.hintLabel.textColor = self.activeHintColor
+            
+            
+            guard self.updateBackGroundColorOnFocus && self.updateBorderColorOnFocus else {
+                return
+            }
+            
             self.backgroundColor = self.focusedBackgroundColor
             self.layer.borderColor = self.focusedBorderColor.cgColor
         }
     }
     
     private func deactivateTextField() {
-        
-        guard updateBackGroundColorOnFocus && updateBorderColorOnFocus else {
-            return
-        }
-        
         if !isHintVisible { return }
         isHintVisible.toggle()
         
         UIView.animate(withDuration: 0.2) {
             self.updateHint()
             self.hintLabel.textColor = self.inactiveHintColor
+            
+            guard self.updateBackGroundColorOnFocus && self.updateBorderColorOnFocus else {
+                return
+            }
+            
             self.backgroundColor = self.defaultBackgroundColor
             self.layer.borderColor = self.defaultBorderColor.cgColor
         }
