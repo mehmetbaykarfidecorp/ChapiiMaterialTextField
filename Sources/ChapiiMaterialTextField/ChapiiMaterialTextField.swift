@@ -198,6 +198,10 @@ open class ChapiiMaterialTextField: UITextField {
     @objc private func textFieldDidChange() {
         UIView.animate(withDuration: 0.2) {
             self.errorLabel.alpha = 0
+            
+            guard self.updateBackGroundColorOnFocus && self.updateBorderColorOnFocus else {
+                return
+            }
             self.layer.borderColor = self.focusedBorderColor.cgColor
 
         }
